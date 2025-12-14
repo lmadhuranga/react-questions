@@ -84,6 +84,73 @@ button:disabled {
   box-shadow: none;
 }
 
+.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.danger {
+  border-color: rgba(248, 113, 113, 0.6);
+  color: #fecdd3;
+}
+
+.form {
+  margin: 16px 0 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.field input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.field input:focus {
+  outline: 2px solid #6366f1;
+}
+
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.checkbox-field input {
+  width: 18px;
+  height: 18px;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
 .employee-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -116,6 +183,13 @@ button:disabled {
   font-size: 0.95rem;
 }
 
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -135,6 +209,12 @@ button:disabled {
 .error {
   margin: 0 0 12px;
   color: #fca5a5;
+  font-weight: 600;
+}
+
+.success {
+  margin: 0;
+  color: #a5f3fc;
   font-weight: 600;
 }
 
