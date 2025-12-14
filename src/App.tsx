@@ -1,34 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useGetEmployeesQuery } from './services/employeeApi'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { data, isLoading, isFetching, isError, error, refetch } = useGetEmployeesQuery()
+  const employees = data ?? []
+
+  const renderError = () => {
+    if (!error) return null
+    if ('status' in error) {
+      const status = typeof error.status === 'number' ? error.status : 'Network error'
+      return `Request failed (status: ${status})`
+    }
+    return error.message ?? 'Something went wrong'
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <main className="app">
+      <section className="panel">
+        <p className="eyebrow">RTK Query example</p>
+        <h1>Employees feed</h1>
+        <p className="lead">
+          Data is loaded from <code>https://samples.json-format.com/employees/json/employees_10KB.json</code>{' '}
+          using <code>createApi</code> and the generated <code>useGetEmployeesQuery</code> hook.
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+
+        <div className="toolbar">
+          <span className="status">
+            Status:{' '}
+            <strong>
+              {isLoading ? 'loading' : isFetching ? 'refreshing' : isError ? 'error' : 'idle'}
+            </strong>
+          </span>
+          <button type="button" onClick={() => refetch()} disabled={isFetching || isLoading}>
+            {isFetching || isLoading ? 'Fetching…' : 'Refetch'}
+          </button>
+        </div>
+
+        {isError ? <p className="error">{renderError()}</p> : null}
+
+        <div className="employee-grid">
+          {isLoading ? <p className="helper">Loading employees…</p> : null}
+          {!isLoading && employees.length === 0 ? (
+            <p className="helper">No employees returned.</p>
+          ) : null}
+          {employees.map((employee) => (
+            <article className="employee-card" key={employee.id}>
+              <div className="employee-meta">
+                <span className="pill">{employee.id}</span>
+                <span className="pill pill--subdued">{employee.departmentName}</span>
+              </div>
+              <h3>{employee.name}</h3>
+              <p className="employee-role">{employee.position}</p>
+              <p className="employee-manager">Manager: {employee.managerName}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
   )
 }
 
