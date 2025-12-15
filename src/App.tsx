@@ -6,6 +6,7 @@ import { LiveParagraph } from './components/LiveParagraph'
 import { ToggleButton } from './components/ToggleButton'
 import { ThemeContext } from './contexts/ThemeContext'
 import { Counter } from './components/Counter'
+import { TodoApp } from './components/TodoApp'
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -18,6 +19,7 @@ function App() {
         <ContextApi />
       </ThemeContext>
       <Counter />
+      <TodoApp />
     </>
   )
 }
