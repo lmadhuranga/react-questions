@@ -27,7 +27,9 @@ export const TodoApp = () => {
   }
 
   const removeHandler = (title:string) => {
-    setTodos(todos.filter((el)=>el.title!==title))
+    if(confirm('Will delete')){
+      setTodos(todos.filter((el)=>el.title!==title))
+    }
   }
 
   return (
