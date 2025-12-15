@@ -13,6 +13,7 @@ export function Layout({ children }: LayoutProps) {
         <div className="links">
           <Link to="/users">Users</Link>
           <Link to="/posts">Posts</Link>
+          <Link to="/login">Auth</Link>
         </div>
       </nav>
       <section className="panel">{children}</section>
