@@ -7,11 +7,13 @@ import { ToggleButton } from './components/ToggleButton'
 import { ThemeContext } from './contexts/ThemeContext'
 import { Counter } from './components/Counter'
 import { TodoApp } from './components/TodoApp'
+import TicTacToe from './components/TicTacToe'
 
 function App() {
   const [theme, setTheme] = useState('light')
   return (
     <>
+      <TicTacToe />
       <ToggleButton />
       <ColorDropdown />
       <LiveParagraph />
