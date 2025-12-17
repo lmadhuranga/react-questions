@@ -1,8 +1,10 @@
 import './App.css'
 import { MyCmp } from './components/MyCmp'
 
-export const App = () => {
+function App() {
   return (<>
     <MyCmp />
   </>)
 }
+
+export default App;
